@@ -1,2 +1,2 @@
-# music-app
-Music app by Swag Squad
+# US Population Tracker
+by Swag Squad [Dom & Xhenis]
