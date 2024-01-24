@@ -34,6 +34,3 @@ window.onmousemove = function (e) {
     if (!name || !id) return 
     console.log(name, id)
 };
-
-
-
