@@ -25,10 +25,14 @@ document.addEventListener('mouseover', (e) => {
 });
 
 window.onmousemove = function (e) {
-    let x = e.clientX,
-        y = e.clientY;
+    let x = e.clientX, y = e.clientY;
+
     tooltipSpan.style.top = (y + 20) + 'px';
     tooltipSpan.style.left = (x) + 'px';
+
+    const { name, id } = e.target.dataset
+    if (!name || !id) return 
+    console.log(name, id)
 };
 
 

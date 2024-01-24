@@ -1,14 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+* {
+  background-color: darkgray;
+}
+
 path {
-  stroke: blue;
-  fill: white !important;
+  stroke: darkgray;
+  fill: #002868 !important;
 
   transition: fill .4s ease;
 }
 
 path:hover {
-  fill: red !important;
+  fill: #BF0A30 !important;
 }
 
 #us-map {
