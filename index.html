@@ -2,12 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>US Population Map</title>
+
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>Testing Our App</h1>
+    <h1>US Population Map</h1>
+    <img src="/us.svg" alt="">
+    <div id="details-box"></div>
     <div id="app"></div>
     <script type="module">
       const testRoute = async (url) => {
@@ -15,8 +20,8 @@
         const data = await response.json();
         console.log('data:', data);
       }
-        const url1 = 'https://datausa.io/api/data?drilldowns=State&measures=Population';
-        const url2 = 'https://datausa.io/api/data?drilldowns=Nation&measures=Population';
+      const url1 = 'https://datausa.io/api/data?drilldowns=State&measures=Population';
+      const url2 = 'https://datausa.io/api/data?drilldowns=Nation&measures=Population';
   
       testRoute(url1);
       testRoute(url2);
