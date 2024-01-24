@@ -13,18 +13,19 @@ testRoute(url2);
 
 const tooltipSpan = document.getElementById('details-box');
 
-document.addEventListener('mouseover', (e) => {
-    if (e.target.tagName == 'path') {
-        const content = e.target.dataset.name;
-        document.getElementById("details-box").innerHTML = content;
-        document.getElementById("details-box").style.opacity = "100%";
-    }
-    else {
-        document.getElementById("details-box").style.opacity = "0%";
-    }
-});
+const handleHover = (e) => {
+  if (e.target.tagName == 'path') {
+      const content = e.target.dataset.name;
+      document.getElementById("details-box").innerHTML = content;
+      document.getElementById("details-box").style.opacity = "100%";
+  }
+  else {
+      document.getElementById("details-box").style.opacity = "0%";
+  }
+}
+document.addEventListener('mouseover', handleHover);
 
-window.onmousemove = function (e) {
+window.onmousemove = (e) => {
     let x = e.clientX, y = e.clientY;
 
     tooltipSpan.style.top = (y + 20) + 'px';
