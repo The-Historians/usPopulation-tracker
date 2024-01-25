@@ -4,10 +4,24 @@
   background-color: darkgray;
 }
 
+body {
+  overflow-x:hidden ;
+}
+
+#svgDiv {
+  width: fit-content;
+  margin: auto;
+  transform: translateX(-5%)
+}
+
+h1 {
+  color: #002868;
+  text-align: center;
+}
+
 path {
   stroke: darkgray;
   fill: #002868 !important;
-
   transition: fill .4s ease;
 }
 
