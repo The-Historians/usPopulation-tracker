@@ -51,3 +51,10 @@ path:hover {
   transition: opacity .4s ease;
   z-index: 1;
 }
+
+#info-box {
+  padding: 1rem;
+  text-align: center;
+
+
+}
