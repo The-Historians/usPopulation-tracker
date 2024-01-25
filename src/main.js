@@ -4,7 +4,8 @@ import {
   getStateInfo
 } from './fetch-functions.js'
 import {
-  renderStateInfo
+  renderStateInfo,
+  renderNationInfo
 } from './render-functions.js'
 
 const main = () => {
@@ -14,9 +15,13 @@ const main = () => {
   //   .then(nation => renderNationInfo(InfoEl, nation))
   //   .catch(error => console.warn(error));
 
-  getStateInfo('Iowa')
-    .then(states => renderStateInfo(InfoEl, states))
+  getNationInfo()
+    .then(nation => renderNationInfo(InfoEl, nation))
     .catch(error => console.warn(error));
+
+  // getStateInfo('Iowa')
+  //   .then(states => renderStateInfo(InfoEl, states))
+  //   .catch(error => console.warn(error));
 
   const tooltipSpan = document.querySelector('#details-box');
 
@@ -57,4 +62,4 @@ const main = () => {
 
 main();
 
-
+  
