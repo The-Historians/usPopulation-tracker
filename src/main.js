@@ -35,3 +35,39 @@ window.onmousemove = (e) => {
     if (!name || !id) return 
     console.log(name, id)
 };
+
+  const nationPopulationFetch = async () => {
+    try {
+      const response = await fetch('https://datausa.io/api/data?drilldowns=Nation&measures=Population');
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
+  };
+ 
+  const renderData = (data) => {
+    
+    const years = data.data.map(entry => entry.Year).join(', ');
+    const populations = data.data.map(entry => entry.Population).join(', ');
+
+    document.getElementById("years").value = years;
+    document.getElementById("population").value = populations;
+  };
+
+  const Render = async () => {
+    try {
+      const data = await fetchData();
+      renderData(data);
+    } catch (error) {
+      console.error("Rendering error:", error);
+    }
+  };
+  Render()
+  nationPopulationFetch()
