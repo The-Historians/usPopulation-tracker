@@ -8,7 +8,6 @@ export const getNationInfo = async () => {
         if (!response.ok) throw new Error(`Failed to fetch info ${response.status}`)
 
         const info = await response.json();
-        console.log('data:', info);
 
         const nationInfoArr = [];
 
@@ -18,10 +17,8 @@ export const getNationInfo = async () => {
                 year: data.Year,
                 population: `${data.Population}`
             }
-            console.log(obj);
             nationInfoArr.push(obj);
         })
-        console.log(nationInfoArr)
         return nationInfoArr;
     }   
     catch (error) {
@@ -36,7 +33,6 @@ export const getStateInfo = async (stateName) => {
         if (!response.ok) throw new Error(`Failed to fetch info ${response.status}`)
 
         const info = await response.json()
-        console.log('This is from getStateinfo:', info)
 
         const stateInfoArr = [];
 
@@ -47,11 +43,9 @@ export const getStateInfo = async (stateName) => {
                 year: data.Year,
                 population: `${data.Population}`
             }
-            console.log(obj);
             stateInfoArr.push(obj);
             }
         })
-        console.log(stateInfoArr)
         return stateInfoArr;        
     }
     catch (error) {
