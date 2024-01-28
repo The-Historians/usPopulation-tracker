@@ -1,4 +1,20 @@
-export const renderNationInfo = async (InfoEl, nations) => {
+export const renderSelectYear = (selectEl, years) => {
+    const label = document.createElement('label');
+    label.textContent = 'Choose a Year: ';
+    selectEl.append(label);
+
+    const select = document.createElement("select");
+    selectEl.append(select)
+
+    years.forEach(year => {
+        const option = document.createElement("option");
+        option.textContent = year;
+        console.log(option.textContent = year)
+        select.append(option);
+    })
+}
+
+export const renderNationInfo = (InfoEl, nations) => {
     InfoEl.innerHTML = "";
 
     nations.forEach(nation => {
@@ -11,15 +27,15 @@ export const renderNationInfo = async (InfoEl, nations) => {
 
         const li = document.createElement('li');
         li.textContent = `Year of Population Data: ${nation.year}`;
+        
         ul.append(li);
-
         const li2 = document.createElement('li');
         li2.textContent = `Nation Population: ${nation.population}`;
         ul.append(li2);
     })
 }
 
-export const renderStateInfo = async (InfoEl, states) => {
+export const renderStateInfo = (InfoEl, states) => {
     InfoEl.innerHTML = "";
 
     states.forEach(state => {

@@ -1,16 +1,23 @@
 import './style.css'
 import { 
   getNationInfo,
-  getStateInfo
+  getStateInfo,
+  getAllYears
 } from './fetch-functions.js'
 import {
   renderStateInfo,
-  renderNationInfo
+  renderNationInfo,
+  renderSelectYear
 } from './render-functions.js'
 
 const main = () => {
   const InfoEl = document.querySelector("#info-box");
-  const tooltipSpan = document.querySelector('#details-box');
+  const tooltipSpan = document.querySelector("#details-box");
+  const selectEl = document.querySelector("#year-select");
+
+  getAllYears()
+    .then(years => renderSelectYear(selectEl, years))
+    .catch(error => console.warn(error));
 
   getNationInfo()
     .then(nation => renderNationInfo(InfoEl, nation))
@@ -29,18 +36,19 @@ const main = () => {
   window.onmousemove = (e) => {
     let x = e.clientX, y = e.clientY;
 
-    tooltipSpan.style.top = (y + 20) + 'px';
+    tooltipSpan.style.top = (y + 17) + 'px';
     tooltipSpan.style.left = (x) + 'px';
 
     const { name, id } = e.target.dataset
     if (!name || !id) return 
+    // console.log(name, id)
   };
 
   const handleStateClick = async (e) => {
     try {
-      if (e.target.tagName == 'path') {
+      if (e.target.tagName == 'PATH') {
         const stateName = e.target.dataset.name;
-        const getStateName = await getStateInfo(stateName);
+        const getStateName = await getStateInfo(stateName, selectedYear);
         const updateStateInfo = await renderStateInfo(InfoEl, getStateName);
         return updateStateInfo;
       }
@@ -52,4 +60,5 @@ const main = () => {
   } 
   document.addEventListener('click', handleStateClick);
 }
+
 main();
