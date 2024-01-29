@@ -46,7 +46,6 @@ const main = () => {
       const yearSelect = document.querySelector('#selectYear');
       const output = yearSelect.value;
       yearData = output;
-      console.log(output)
       return output;
     }
     catch {
@@ -73,7 +72,6 @@ const main = () => {
     try {
       if (e.target.tagName == 'path') {
         const stateName = e.target.dataset.name;
-        console.log(stateName)
         const selectedYear = yearData;
         const getStateName = await getStateInfo(stateName, selectedYear);
         const updateStateInfo = await renderStateInfo(infoEl, getStateName);

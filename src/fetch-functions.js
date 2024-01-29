@@ -5,7 +5,6 @@ const nationAPI = 'https://datausa.io/api/data?drilldowns=Nation&measures=Popula
 export const getNationInfo = async (selectedYear) => {
     try {
         const response =  await fetch(nationAPI);
-        
         if (!response.ok) throw new Error(`Failed to fetch info ${response.status}`)
 
         const info = await response.json();
@@ -22,7 +21,6 @@ export const getNationInfo = async (selectedYear) => {
                 nationInfoArr.push(obj);
             }
         })
-        console.log(nationInfoArr)
         return nationInfoArr;
     }   
     catch (error) {
@@ -34,7 +32,6 @@ export const getNationInfo = async (selectedYear) => {
 export const getStateInfo = async (stateName, selectedYear) => {
     try {
         const response = await fetch(stateAPI);
-        console.log(stateAPI)
         if (!response.ok) throw new Error(`Failed to fetch info ${response.status}`)
 
         const info = await response.json()
@@ -51,7 +48,6 @@ export const getStateInfo = async (stateName, selectedYear) => {
             stateInfoArr.push(obj);
             }
         })
-        console.log(stateInfoArr)
         return stateInfoArr;        
     }
     catch (error) {
