@@ -1,8 +1,8 @@
-const stateAPI = 'https://datausa.io/api/data?drilldowns=State&measures=Population&year=latest';
+const stateAPI = 'https://datausa.io/api/data?drilldowns=State&measures=Population';
 
-const nationAPI = 'https://datausa.io/api/data?drilldowns=Nation&measures=Population&year=latest';
+const nationAPI = 'https://datausa.io/api/data?drilldowns=Nation&measures=Population';
 
-export const getNationInfo = async () => {
+export const getNationInfo = async (selectedYear) => {
     try {
         const response =  await fetch(nationAPI);
         if (!response.ok) throw new Error(`Failed to fetch info ${response.status}`)
@@ -12,12 +12,14 @@ export const getNationInfo = async () => {
         const nationInfoArr = [];
 
         info.data.forEach(data => {
-            const obj = {
-                nation: data.Nation,
-                year: data.Year,
-                population: `${data.Population}`
+            if (selectedYear === data.Year) {
+                const obj = {
+                    nation: data.Nation,
+                    year: data.Year,
+                    population: `${data.Population}`
+                }
+                nationInfoArr.push(obj);
             }
-            nationInfoArr.push(obj);
         })
         return nationInfoArr;
     }   
@@ -27,7 +29,7 @@ export const getNationInfo = async () => {
     }
 }
 
-export const getStateInfo = async (stateName) => {
+export const getStateInfo = async (stateName, selectedYear) => {
     try {
         const response = await fetch(stateAPI);
         if (!response.ok) throw new Error(`Failed to fetch info ${response.status}`)
@@ -37,7 +39,7 @@ export const getStateInfo = async (stateName) => {
         const stateInfoArr = [];
 
         info.data.forEach(data => {
-            if (stateName === data.State) {
+            if (stateName === data.State && selectedYear === data.Year) {
             const obj = {
                 state: data.State,
                 year: data.Year,
@@ -47,6 +49,26 @@ export const getStateInfo = async (stateName) => {
             }
         })
         return stateInfoArr;        
+    }
+    catch (error) {
+        console.warn(error.message);
+        return null;
+    }
+}
+
+export const getAllYears = async () => {
+    try {
+        const response = await fetch(nationAPI);
+        if (!response.ok) throw new Error(`Failed to fetch info ${response.status}`);
+
+        const year = await response.json();
+
+        const yearArr = [];
+
+        year.data.forEach(data => {
+            yearArr.push(`${data.Year}`);
+        })
+        return yearArr; 
     }
     catch (error) {
         console.warn(error.message);

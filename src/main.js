@@ -1,19 +1,24 @@
 import './style.css'
 import { 
   getNationInfo,
-  getStateInfo
+  getStateInfo,
+  getAllYears
 } from './fetch-functions.js'
 import {
   renderStateInfo,
-  renderNationInfo
+  renderNationInfo,
+  renderSelectYear
 } from './render-functions.js'
 
 const main = () => {
-  const InfoEl = document.querySelector("#info-box");
-  const tooltipSpan = document.querySelector('#details-box');
+  const infoEl = document.querySelector("#info-box");
+  const tooltipSpan = document.querySelector("#details-box");
+  const selectEl = document.querySelector("#year-select");
+  let yearData = "";
+  const nationInfoEl = document.querySelector("#nation-info-box");
 
-  getNationInfo()
-    .then(nation => renderNationInfo(InfoEl, nation))
+  getAllYears()
+    .then(years => renderSelectYear(selectEl, years))
     .catch(error => console.warn(error));
 
   const handleHover = (e) => {
@@ -29,19 +34,47 @@ const main = () => {
   window.onmousemove = (e) => {
     let x = e.clientX, y = e.clientY;
 
-    tooltipSpan.style.top = (y + 20) + 'px';
+    tooltipSpan.style.top = (y + 17) + 'px';
     tooltipSpan.style.left = (x) + 'px';
 
     const { name, id } = e.target.dataset
     if (!name || !id) return 
   };
 
+  const handleYearSelect = () => {
+    try {
+      const yearSelect = document.querySelector('#selectYear');
+      const output = yearSelect.value;
+      yearData = output;
+      return output;
+    }
+    catch {
+      console.warn(error.message);
+      return null;
+    }
+  }
+  document.addEventListener('change', handleYearSelect);
+
+  const handleNationInfo = async () => {
+    try {
+      const response = await getNationInfo(yearData);
+      const data = await renderNationInfo(nationInfoEl, response);
+      return data;
+    }
+    catch {
+      console.warn(error.message);
+      return null;
+    }
+  }
+  document.addEventListener('change', handleNationInfo);
+  
   const handleStateClick = async (e) => {
     try {
       if (e.target.tagName == 'path') {
         const stateName = e.target.dataset.name;
-        const getStateName = await getStateInfo(stateName);
-        const updateStateInfo = await renderStateInfo(InfoEl, getStateName);
+        const selectedYear = yearData;
+        const getStateName = await getStateInfo(stateName, selectedYear);
+        const updateStateInfo = await renderStateInfo(infoEl, getStateName);
         return updateStateInfo;
       }
     }
@@ -52,4 +85,5 @@ const main = () => {
   } 
   document.addEventListener('click', handleStateClick);
 }
+
 main();
