@@ -11,16 +11,14 @@ import {
 } from './render-functions.js'
 
 const main = () => {
-  const InfoEl = document.querySelector("#info-box");
+  const infoEl = document.querySelector("#info-box");
   const tooltipSpan = document.querySelector("#details-box");
   const selectEl = document.querySelector("#year-select");
+  let yearData = "";
+  const nationInfoEl = document.querySelector("#nation-info-box");
 
   getAllYears()
     .then(years => renderSelectYear(selectEl, years))
-    .catch(error => console.warn(error));
-
-  getNationInfo()
-    .then(nation => renderNationInfo(InfoEl, nation))
     .catch(error => console.warn(error));
 
   const handleHover = (e) => {
@@ -41,15 +39,35 @@ const main = () => {
 
     const { name, id } = e.target.dataset
     if (!name || !id) return 
-    // console.log(name, id)
   };
+
+  const handleYearSelect = () => {
+    try {
+      const yearSelect = document.querySelector('#selectYear');
+      const output = yearSelect.value;
+      yearData = output;
+      console.log(output)
+      return output;
+    }
+    catch {
+      console.warn(error.message);
+      return null;
+    }
+  }
+  document.addEventListener('change', handleYearSelect);
+
+  getNationInfo(yearData)
+    .then(nation => renderNationInfo(nationInfoEl, nation))
+    .catch(error => console.warn(error));
 
   const handleStateClick = async (e) => {
     try {
-      if (e.target.tagName == 'PATH') {
+      if (e.target.tagName == 'path') {
         const stateName = e.target.dataset.name;
+        console.log(stateName)
+        const selectedYear = yearData;
         const getStateName = await getStateInfo(stateName, selectedYear);
-        const updateStateInfo = await renderStateInfo(InfoEl, getStateName);
+        const updateStateInfo = await renderStateInfo(infoEl, getStateName);
         return updateStateInfo;
       }
     }
