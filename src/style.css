@@ -2,6 +2,9 @@
 
 * {
   background-color: darkgray;
+  font-family: Poppins;
+  color: #002868;
+  text-align: center;
 }
 
 body {
@@ -15,30 +18,6 @@ body {
 }
 
 h1 {
-  font-family: Poppins;
-  color: #002868;
-  text-align: center;
-}
-
-#info-box {
-  font-family: Poppins;
-  color: #002868;
-  text-align: center;
-}
-
-#nation-info-box {
-  font-family: Poppins;
-  color: #002868;
-  text-align: center;
-}
-
-#year-select {
-  font-family: Poppins;
-  color: #002868;
-  text-align: center;
-}
-
-#select-a-year {
   font-family: Poppins;
   color: #002868;
   text-align: center;
