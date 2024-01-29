@@ -34,21 +34,6 @@ export const renderNationInfo = (nationInfoEl, nations) => {
         const p = document.createElement('p');
         p.textContent = `Here is the population total for the ${nation.nation} from ${nation.year}: ${nation.population}`;
         nationInfoEl.append(p);
-
-        // const p = document.createElement('p');
-        // p.textContent = `${nation.nation}`;
-        // infoEl.append(p);
-
-        // const ul = document.createElement('ul');
-        // infoEl.append(ul);
-
-        // const li = document.createElement('li');
-        // li.textContent = `Year of Population Data: ${nation.year}`;
-        
-        // ul.append(li);
-        // const li2 = document.createElement('li');
-        // li2.textContent = `Nation Population: ${nation.population}`;
-        // ul.append(li2);
     })
 }
 
@@ -59,20 +44,5 @@ export const renderStateInfo = (infoEl, states) => {
         const p = document.createElement('p');
         p.textContent = `Here is the population total for ${state.state} from ${state.year}: ${state.population}`;
         infoEl.append(p);
-
-        // const p = document.createElement('p');
-        // p.textContent = `${state.state}`;
-        // infoEl.append(p);
-
-        // const ul = document.createElement('ul');
-        // infoEl.append(ul);
-
-        // const li = document.createElement('li');
-        // li.textContent = `Year of Population Data: ${state.year}`;
-        // ul.append(li);
-
-        // const li2 = document.createElement('li');
-        // li2.textContent = `State Population: ${state.population}`;
-        // ul.append(li2);
     })
 }
