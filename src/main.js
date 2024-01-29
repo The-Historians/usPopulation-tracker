@@ -56,10 +56,19 @@ const main = () => {
   }
   document.addEventListener('change', handleYearSelect);
 
-  getNationInfo(yearData)
-    .then(nation => renderNationInfo(nationInfoEl, nation))
-    .catch(error => console.warn(error));
-
+  const handleNationInfo = async () => {
+    try {
+      const response = await getNationInfo(yearData);
+      const data = await renderNationInfo(nationInfoEl, response);
+      return data;
+    }
+    catch {
+      console.warn(error.message);
+      return null;
+    }
+  }
+  document.addEventListener('change', handleNationInfo);
+  
   const handleStateClick = async (e) => {
     try {
       if (e.target.tagName == 'path') {

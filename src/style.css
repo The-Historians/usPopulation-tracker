@@ -26,6 +26,12 @@ h1 {
   text-align: center;
 }
 
+#nation-info-box {
+  font-family: Poppins;
+  color: #002868;
+  text-align: center;
+}
+
 #year-select {
   font-family: Poppins;
   color: #002868;

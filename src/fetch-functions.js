@@ -5,6 +5,7 @@ const nationAPI = 'https://datausa.io/api/data?drilldowns=Nation&measures=Popula
 export const getNationInfo = async (selectedYear) => {
     try {
         const response =  await fetch(nationAPI);
+        
         if (!response.ok) throw new Error(`Failed to fetch info ${response.status}`)
 
         const info = await response.json();

@@ -33,7 +33,7 @@ export const renderNationInfo = (nationInfoEl, nations) => {
     nations.forEach(nation => {
         const p = document.createElement('p');
         p.textContent = `Here is the population total for ${nation.nation} from ${nation.year}: ${nation.population}`;
-        infoEl.append(p);
+        nationInfoEl.append(p);
 
         // const p = document.createElement('p');
         // p.textContent = `${nation.nation}`;
