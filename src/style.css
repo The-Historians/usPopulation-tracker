@@ -25,7 +25,7 @@ li {
 path {
   stroke: darkgray;
   fill: #002868 !important;
-  transition: fill .4s ease;
+  transition: fill .45s ease;
 }
 
 path:hover {
