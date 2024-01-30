@@ -72,8 +72,7 @@ const main = () => {
     try {
       if (e.target.tagName == 'path') {
         const stateName = e.target.dataset.name;
-        const selectedYear = yearData;
-        const getStateName = await getStateInfo(stateName, selectedYear);
+        const getStateName = await getStateInfo(stateName, yearData);
         const updateStateInfo = await renderStateInfo(infoEl, getStateName);
         return updateStateInfo;
       }
