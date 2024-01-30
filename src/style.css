@@ -17,12 +17,6 @@ body {
   transform: translateX(-5%)
 }
 
-h1 {
-  font-family: Poppins;
-  color: #002868;
-  text-align: center;
-}
-
 li {
   list-style: none;
   margin: auto;
